@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARCOS IA MÁS HUMANA | IA & Automatización Resiliente en Caracas</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0284C7;
+            --primary-dark: #0369A1;
+            --pastel-blue: #E0F2FE;
+            --pastel-blue-light: #F0F9FF;
+            --pastel-blue-border: #BAE6FD;
+            --neutral-dark: #0F172A;
+            --neutral-gray: #475569;
+            --light-gray: #F8FAFC;
+            --card-border: #E2E8F0;
+            --whatsapp-green: #25D366;
+            --instagram-pink: #E1306C;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--neutral-dark);
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        /* Typography & Custom Utilities */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .text-pastel-primary {
+            color: var(--primary-blue);
+        }
+
+        .bg-pastel-subtle {
+            background-color: var(--pastel-blue-light);
+        }
+
+        .bg-pastel-accent {
+            background-color: var(--pastel-blue);
+        }
+
+        .border-pastel {
+            border-color: var(--pastel-blue-border) !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--neutral-dark);
+        }
+
+        .navbar-brand span {
+            color: var(--primary-blue);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--neutral-gray);
+            margin: 0 0.3rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .btn-custom-outline {
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            font-weight: 600;
+            border-radius: 50rem;
+            padding: 0.5rem 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-outline:hover {
+            background-color: var(--primary-blue);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        .btn-custom-solid {
+            background-color: var(--primary-blue);
+            color: #FFFFFF;
+            font-weight: 600;
+            border-radius: 50rem;
+            padding: 0.6rem 1.4rem;
+            border: none;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom-solid:hover {
+            background-color: var(--primary-dark);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.35);
+        }
+
+        .hero-section {
+            padding: 5rem 0 4rem 0;
+            background: linear-gradient(180deg, var(--pastel-blue-light) 0%, #FFFFFF 100%);
+            position: relative;
+        }
+
+        .hero-badge {
+            background-color: #FFFFFF;
+            border: 1px solid var(--pastel-blue-border);
+            padding: 0.4rem 1rem;
+            border-radius: 50rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        /* Animated Workflow Visual Box */
+        .workflow-visual-card {
+            background: #0F172A;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: #FFFFFF;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .node-step {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 0.8rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .node-step.active {
+            border-color: #38BDF8;
+            background: rgba(56, 189, 248, 0.1);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .node-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .social-proof-bar {
+            background-color: var(--light-gray);
+            border-top: 1px solid var(--card-border);
+            border-bottom: 1px solid var(--card-border);
+            padding: 2.5rem 0;
+        }
+
+        .tech-logo-badge {
+            background-color: #FFFFFF;
+            border: 1px solid var(--card-border);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--neutral-gray);
+            margin: 0.25rem;
+            display: inline-block;
+        }
+
+        .counter-card {
+            background: #FFFFFF;
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            height: 100%;
+        }
+
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Pathway Cards (B2C vs B2B) */
+        .path-card {
+            border: 2px solid var(--card-border);
+            border-radius: 1.25rem;
+            padding: 2.25rem;
+            transition: all 0.3s ease;
+            background-color: #FFFFFF;
+            height: 100%;
+        }
+
+        .path-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(2, 132, 199, 0.12);
+        }
+
+        .course-card {
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;
+            background: #FFFFFF;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            border-color: var(--pastel-blue-border);
+        }
+
+        .case-study-card {
+            background: #FFFFFF;
+            border-radius: 1rem;
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .pricing-card {
+            border: 1px solid var(--card-border);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            background: #FFFFFF;
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100%;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary-blue);
+            background: var(--pastel-blue-light);
+        }
+
+        .badge-popular {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--primary-blue);
+            color: #FFFFFF;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.8rem;
+            border-radius: 50rem;
+            text-transform: uppercase;
+        }
+
+        .floating-widget-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1050;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .floating-btn {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-size: 1.7rem;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            color: #FFFFFF;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp-green);
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        /* WhatsApp Chat Modal Box */
+        .wa-chat-box {
+            position: fixed;
+            bottom: 95px;
+            right: 25px;
+            width: 320px;
+            background: #FFFFFF;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+            z-index: 1060;
+            display: none;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+        }
+
+        .wa-chat-header {
+            background: #075E54;
+            color: #FFFFFF;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wa-chat-body {
+            padding: 1rem;
+            background: #E5DDD5;
+            min-height: 180px;
+        }
+
+        .wa-msg-bubble {
+            background: #FFFFFF;
+            padding: 0.75rem;
+            border-radius: 0.5rem 0.5rem 0.5rem 0;
+            font-size: 0.88rem;
+            color: var(--neutral-dark);
+            margin-bottom: 0.5rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Image styling */
+        .img-realistic {
+            border-radius: 1rem;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1090;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-white border-bottom border-pastel">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fa-solid me-2 text-pastel-primary"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 21.99 17.52 21.99 12C21.99 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#0284C7"/>
+                    <circle cx="12" cy="12" r="4" fill="#0284C7"/>
+                    <path d="M12 6V8M12 16V18M6 12H8M16 12H18" stroke="#0284C7" stroke-width="2" stroke-linecap="round"/>
+                </svg></i>
+                <span>SARCOS</span>&nbsp;IA MÁS HUMANA
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#formacion">Formación</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#consultoria">Consultoría B2B</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#casos">Casos de Éxito</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#nosotros">Sobre Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <!-- Currency Switcher Selector -->
+                    <div class="dropdown me-2">
+                        <button class="btn btn-sm btn-light border dropdown-toggle fw-semibold" type="button" id="currencyBtn" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-coins me-1 text-pastel-primary"></i> <span id="selectedCurrencyLabel">USD ($)</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="currencyBtn">
+                            <li><a class="dropdown-item currency-select" href="#" data-currency="USD">USD ($)</a></li>
+                            <li><a class="dropdown-item currency-select" href="#" data-currency="VES">VES (Bs. Pago Móvil)</a></li>
+                            <li><a class="dropdown-item currency-select" href="#" data-currency="USDT">USDT (Binance)</a></li>
+                        </ul>
+                    </div>
+
+                    <a href="#formacion" class="btn btn-custom-outline btn-sm me-1">Ver Cursos</a>
+                    <button class="btn btn-custom-solid btn-sm" data-bs-toggle="modal" data-bs-target="#diagnosticModal">Agendar Diagnóstico</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="hero-badge mb-3">
+                        <i class="fa-solid fa-bolt me-1 text-warning"></i> [NUEVO] Automatizaciones resilientes e IA local adaptadas a Venezuela
+                    </div>
+                    <h1 class="display-5 fw-extrabold mb-3 text-dark">
+                        Hacemos que la Inteligencia Artificial trabaje para ti, <span class="text-pastel-primary">no al revés.</span>
+                    </h1>
+                    <p class="lead text-secondary mb-3 fs-6 fw-medium">
+                        Transforma tu carrera profesional o escala la eficiencia de tu empresa con automatizaciones en <strong>n8n</strong>, agentes inteligentes y consultoría estratégica en Caracas.
+                    </p>
+                    <p class="text-muted small mb-4">
+                        <i class="fa-solid fa-check-circle text-success me-1"></i> Desde tus primeros pasos en Prompt Engineering hasta flujos complejos de n8n con tolerancia a fallos de red e integración con tus sistemas locales.
+                    </p>
+
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+                        <button class="btn btn-custom-solid btn-lg fs-6" data-bs-toggle="modal" data-bs-target="#diagnosticModal">
+                            <i class="fa-solid fa-calendar-check me-2"></i>Solicitar Diagnóstico Gratuito (15 min)
+                        </button>
+                        <a href="#formacion" class="btn btn-custom-outline btn-lg fs-6 text-center">
+                            Explorar Programas de Formación
+                        </a>
+                    </div>
+
+                    <div class="mt-4 pt-2 d-flex align-items-center text-muted small">
+                        <i class="fa-solid fa-shield-halved text-pastel-primary fs-5 me-2"></i>
+                        <span>Infraestructura resiliente y soberanía de datos certificada en Venezuela.</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Animated Workflow Visual -->
+                <div class="col-lg-6">
+                    <div class="workflow-visual-card position-relative overflow-hidden">
+                        <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="spinner-grow spinner-grow-sm text-info" role="status"></span>
+                                <span class="fw-bold small text-light">Flujo n8n Resiliente en Vivo (Caracas)</span>
+                            </div>
+                            <span class="badge bg-success bg-opacity-25 text-success border border-success border-opacity-50 small">Servidor Activo</span>
+                        </div>
+
+                        <!-- Animated Nodes -->
+                        <div id="node1" class="node-step active">
+                            <div class="node-icon bg-primary bg-opacity-25 text-info">
+                                <i class="fa-solid fa-receipt"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <strong class="small">1. Recepción Captura Pago Móvil</strong>
+                                    <span class="badge bg-info text-dark extra-small">Entrada</span>
+                                </div>
+                                <div class="text-secondary extra-small">Cliente envía comprobante vía WhatsApp API</div>
+                            </div>
+                        </div>
+
+                        <div id="node2" class="node-step">
+                            <div class="node-icon bg-warning bg-opacity-25 text-warning">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <strong class="small">2. OCR Visión IA + Verificación</strong>
+                                    <span class="badge bg-warning text-dark extra-small">IA Local</span>
+                                </div>
+                                <div class="text-secondary extra-small">Ollama / DeepSeek extrae Banco, Ref. y Monto</div>
+                            </div>
+                        </div>
+
+                        <div id="node3" class="node-step">
+                            <div class="node-icon bg-primary bg-opacity-25 text-primary">
+                                <i class="fa-solid fa-database"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <strong class="small">3. Asentamiento en Profit / Saint</strong>
+                                    <span class="badge bg-primary extra-small">Cola de Retención</span>
+                                </div>
+                                <div class="text-secondary extra-small">Conexión con sistema administrativo local</div>
+                            </div>
+                        </div>
+
+                        <div id="node4" class="node-step">
+                            <div class="node-icon bg-success bg-opacity-25 text-success">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between">
+                                    <strong class="small">4. Notificación de Confirmación</strong>
+                                    <span class="badge bg-success extra-small">Completado</span>
+                                </div>
+                                <div class="text-secondary extra-small">Envío automático de factura/recibo al cliente</div>
+                            </div>
+                        </div>
+
+                        <div class="p-2 bg-dark rounded border border-secondary border-opacity-25 mt-3 d-flex align-items-center justify-content-between text-muted extra-small">
+                            <span><i class="fa-solid fa-wifi text-success me-1"></i> Tolerancia a fallos eléctrica / red: <strong>100% Garantizada</strong></span>
+                            <span id="execTimer" class="font-monospace text-info">Ejecución: 1.2s</span>
+                        </div>
+                        <div class="text-center mt-2">
+                            <span class="text-white-50 extra-small font-italic">"Flujo real ejecutado de forma resiliente en servidores locales de Caracas."</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF & INTEGRATIONS BAR -->
+    <section class="social-proof-bar">
+        <div class="container">
+            <p class="text-center text-muted small fw-semibold text-uppercase mb-3">Modelos, herramientas y sistemas con los que construimos tus soluciones:</p>
+            <div class="d-flex flex-wrap justify-content-center align-items-center mb-4">
+                <span class="tech-logo-badge"><i class="fa-solid fa-diagram-project text-danger me-1"></i> n8n</span>
+                <span class="tech-logo-badge"><i class="fa-solid fa-robot text-success me-1"></i> OpenAI</span>
+                <span class="tech-logo-badge"><i class="fa-solid fa-microchip text-primary me-1"></i> Anthropic (Claude)</span>
+                <span class="tech-logo-badge"><i class="fa-solid fa-server text-info me-1"></i> Ollama / Llama 3</span>
+                <span class="tech-logo-badge"><i class="fa-solid fa-atom text-warning me-1"></i> DeepSeek</span>
+                <span class="tech-logo-badge"><i class="fa-solid fa-database text-secondary me-1"></i> PostgreSQL</span>
+                <span class="tech-logo-badge"><i class="fa-solid fa-chart-line text-dark me-1"></i> Profit Plus</span>
+                <span class="tech-logo-badge"><i class="fa-solid fa-building text-primary me-1"></i> Saint</span>
+                <span class="tech-logo-badge"><i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp API</span>
+            </div>
+
+            <!-- Key Metric Counters -->
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="counter-card">
+                        <div class="counter-number">+80%</div>
+                        <p class="text-secondary small fw-semibold mb-0">Reducción en tiempos de tareas repetitivas operativas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="counter-card">
+                        <div class="counter-number">100%</div>
+                        <p class="text-secondary small fw-semibold mb-0">Privacidad de datos garantizada con arquitecturas On-Premise.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="counter-card">
+                        <div class="counter-number">0</div>
+                        <p class="text-secondary small fw-semibold mb-0">Pérdida de ejecuciones gracias a sistemas de cola resilientes ante cortes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISITOR SEGMENTATION ("Elige tu Camino") -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center max-w-2xl mx-auto mb-5">
+                <span class="badge bg-pastel-accent text-pastel-primary fw-bold px-3 py-2 rounded-pill mb-2">PERSONALIZA TU EXPERIENCIA</span>
+                <h2 class="fw-extrabold">¿Cómo deseas transformar tu futuro hoy?</h2>
+                <p class="text-muted">Selecciona la opción que mejor se adapte a tus metas profesionales o empresariales.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Option A: B2C / Professionals -->
+                <div class="col-md-6">
+                    <div class="path-card">
+                        <div class="d-inline-flex p-3 rounded-circle bg-pastel-accent text-pastel-primary mb-3">
+                            <i class="fa-solid fa-user-graduate fs-3"></i>
+                        </div>
+                        <span class="badge bg-info bg-opacity-10 text-info fw-bold mb-2 ms-2">Para Profesionales & Talento</span>
+                        <h3 class="h4 fw-bold">"Quiero Formarme en IA y Automatización"</h3>
+                        <p class="text-secondary small mb-4">
+                            Ideal para emprendedores, freelancers, ingenieros, administradores y consultores. Pasa de ser un usuario básico a un especialista capaz de construir flujos avanzados con n8n y agentes de IA.
+                        </p>
+                        <a href="#formacion" class="btn btn-custom-outline w-100 text-center">
+                            Ver Rutas de Aprendizaje <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Option B: B2B / Corporate -->
+                <div class="col-md-6">
+                    <div class="path-card">
+                        <div class="d-inline-flex p-3 rounded-circle bg-dark text-white mb-3">
+                            <i class="fa-solid fa-building-user fs-3"></i>
+                        </div>
+                        <span class="badge bg-primary bg-opacity-10 text-primary fw-bold mb-2 ms-2">Para Empresas & PYMES</span>
+                        <h3 class="h4 fw-bold">"Necesito Automatizar o Implementar IA en mi Empresa"</h3>
+                        <p class="text-secondary small mb-4">
+                            Diseñado para Directores, Gerentes de Operaciones, CTOs y dueños de empresas en Caracas. Auditamos tus procesos, diseñamos arquitecturas a medida y capacitamos a tu equipo in-company.
+                        </p>
+                        <button class="btn btn-custom-solid w-100" data-bs-toggle="modal" data-bs-target="#diagnosticModal">
+                            Agendar Sesión Estratégica <i class="fa-solid fa-calendar-alt ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOCK A: FORMACIÓN EN IA Y AUTOMATIZACIÓN -->
+    <section id="formacion" class="py-5 bg-pastel-subtle">
+        <div class="container">
+            <div class="text-center max-w-2xl mx-auto mb-5">
+                <span class="badge bg-primary text-white fw-bold px-3 py-2 rounded-pill mb-2">OFERTA EDUCATIVA B2C</span>
+                <h2 class="fw-extrabold">Rutas de Aprendizaje en IA y Automatización</h2>
+                <p class="text-secondary">Estructura modular diseñada para llevarte desde cero hasta la maestría técnica aplicada.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Level 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="course-card p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-light text-dark border fw-bold">Nivel 1</span>
+                            <span class="badge bg-success bg-opacity-10 text-success fw-bold">Principiante</span>
+                        </div>
+                        <h3 class="h5 fw-bold">Fundamentos, Prompt Engineering y Productividad Humana</h3>
+                        <p class="text-muted extra-small mb-3">Para principiantes que quieren dominar las herramientas de IA generativa sin escribir una sola línea de código.</p>
+                        
+                        <div class="bg-light p-3 rounded mb-3 flex-grow-1">
+                            <p class="fw-bold extra-small text-uppercase text-secondary mb-2">Lo que aprenderás:</p>
+                            <ul class="list-unstyled extra-small text-secondary mb-0">
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Uso estratégico de ChatGPT, Claude y Gemini para tareas diarias.</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Creación de Asistentes Personalizados (Custom GPTs / Projects).</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Ingeniería de Prompts avanzada para negocios y redacción.</li>
+                            </ul>
+                        </div>
+                        <div class="pt-2 border-top">
+                            <span class="d-block extra-small text-muted mb-2"><i class="fa-solid fa-video me-1"></i>Sincrónico / Online en vivo + Plantillas</span>
+                            <a href="#precios" class="btn btn-outline-primary btn-sm w-100 rounded-pill">Ver Plan Fundamentos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="course-card p-4 border-primary">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-primary text-white fw-bold">Nivel 2</span>
+                            <span class="badge bg-info bg-opacity-10 text-info fw-bold">Intermedio</span>
+                        </div>
+                        <h3 class="h5 fw-bold">Automatización de Flujos de Trabajo con n8n</h3>
+                        <p class="text-muted extra-small mb-3">Para profesionales y técnicos que desean conectar sistemas y eliminar tareas manuales repetitivas.</p>
+                        
+                        <div class="bg-light p-3 rounded mb-3 flex-grow-1">
+                            <p class="fw-bold extra-small text-uppercase text-secondary mb-2">Lo que aprenderás:</p>
+                            <ul class="list-unstyled extra-small text-secondary mb-0">
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Fundamentos de n8n: Triggers, Webhooks y Nodos de control.</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Conexión con APIs, Google Sheets, Airtable y bases de datos.</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i><strong>Módulo Caracas:</strong> Flujos resilientes ante cortes de internet.</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Integración de n8n con WhatsApp Business API.</li>
+                            </ul>
+                        </div>
+                        <div class="pt-2 border-top">
+                            <span class="d-block extra-small text-success fw-bold mb-2"><i class="fa-solid fa-gift me-1"></i>Incluye Pack de 10 Plantillas n8n Plug & Play</span>
+                            <a href="#precios" class="btn btn-primary btn-sm w-100 rounded-pill">Ver Bootcamp n8n</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level 3 -->
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="course-card p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-dark text-white fw-bold">Nivel 3</span>
+                            <span class="badge bg-warning bg-opacity-10 text-warning fw-bold">Avanzado</span>
+                        </div>
+                        <h3 class="h5 fw-bold">Agentes Autónomos, Sistemas RAG e IA Privada</h3>
+                        <p class="text-muted extra-small mb-3">Para desarrolladores, integradores y consultores tech que buscan el nivel superior.</p>
+                        
+                        <div class="bg-light p-3 rounded mb-3 flex-grow-1">
+                            <p class="fw-bold extra-small text-uppercase text-secondary mb-2">Lo que aprenderás:</p>
+                            <ul class="list-unstyled extra-small text-secondary mb-0">
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Construcción de agentes de IA con memoria y toma de decisiones.</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Implementación de RAG con Vector Databases (Pinecone/Qdrant).</li>
+                                <li class="mb-1"><i class="fa-solid fa-check text-success me-2"></i>Despliegue de IA Privada con Ollama (Llama 3/DeepSeek) + n8n.</li>
+                            </ul>
+                        </div>
+                        <div class="pt-2 border-top">
+                            <span class="d-block extra-small text-muted mb-2"><i class="fa-solid fa-laptop-code me-1"></i>Bootcamp intensivo con proyecto integrador real</span>
+                            <a href="#precios" class="btn btn-outline-dark btn-sm w-100 rounded-pill">Ver Pro Master</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOCK B: CONSULTORÍA Y SOLUCIONES EMPRESARIALES B2B -->
+    <section id="consultoria" class="py-5 bg-white">
+        <div class="container">
+            <div class="row align-items-center g-5 mb-5">
+                <div class="col-lg-6">
+                    <span class="badge bg-pastel-accent text-pastel-primary fw-bold px-3 py-2 rounded-pill mb-2">SOLUCIONES CORPORATIVAS B2B</span>
+                    <h2 class="fw-extrabold display-6">Automatización Inteligente sin Interrupciones para Empresas</h2>
+                    <p class="text-secondary">
+                        Especializados en el ROI inmediato, la seguridad absoluta de la información y la continuidad operativa en el contexto empresarial venezolano.
+                    </p>
+
+                    <div class="mt-4">
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="p-2 bg-pastel-accent rounded text-primary me-3"><i class="fa-solid fa-magnifying-glass-chart fs-5"></i></div>
+                            <div>
+                                <h5 class="fw-bold h6 mb-1">1. Auditoría Operativa y Diagnóstico de Procesos</h5>
+                                <p class="text-muted extra-small">Identificamos cuellos de botella donde la automatización genera un ahorro inmediato de tiempo y dinero.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="p-2 bg-pastel-accent rounded text-primary me-3"><i class="fa-solid fa-network-wired fs-5"></i></div>
+                            <div>
+                                <h5 class="fw-bold h6 mb-1">2. Arquitectura e Implementación n8n a Medida</h5>
+                                <p class="text-muted extra-small">Flujos "Llave en Mano" (Done-For-You). Opción Cloud u On-Premise en servidores propios para total soberanía de datos.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="p-2 bg-pastel-accent rounded text-primary me-3"><i class="fa-solid fa-plug fs-5"></i></div>
+                            <div>
+                                <h5 class="fw-bold h6 mb-1">3. Integración con Sistemas Locales y Tradicionales</h5>
+                                <p class="text-muted extra-small">Conectamos tus agentes de IA con Profit Plus, Saint, Galac y canales de WhatsApp/Telegram.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="p-2 bg-pastel-accent rounded text-primary me-3"><i class="fa-solid fa-shield-virus fs-5"></i></div>
+                            <div>
+                                <h5 class="fw-bold h6 mb-1">4. Resiliencia y Garantía Anti-Interrupciones</h5>
+                                <p class="text-muted extra-small">Configuración con colas de reintento para que ningún dato se pierda durante fallas de red local o cortes eléctricos.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <div class="p-2 bg-pastel-accent rounded text-primary me-3"><i class="fa-solid fa-chalkboard-user fs-5"></i></div>
+                            <div>
+                                <h5 class="fw-bold h6 mb-1">5. Capacitación In-Company y Soporte SLA</h5>
+                                <p class="text-muted extra-small">Formamos a tu personal operativo y ofrecemos póliza de mantenimiento continuo de modelos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <!-- Photorealistic Fallback Graphic for B2B Consulting -->
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=80" alt="Consultoría e Inteligencia Artificial Empresarial en Caracas" class="img-realistic shadow-lg">
+                        <div class="position-absolute bottom-0 start-0 m-3 p-3 bg-dark bg-opacity-90 text-white rounded-3 border border-secondary">
+                            <p class="small mb-0 fw-bold"><i class="fa-solid fa-server text-info me-2"></i>Arquitecturas On-Premise en Servidores Locales</p>
+                            <span class="extra-small text-white-50">Soberanía de datos para empresas en Caracas y Latam</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMOSTRACIÓN PRÁCTICA: CASOS DE USO REALES -->
+    <section id="casos" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center max-w-2xl mx-auto mb-5">
+                <span class="badge bg-dark text-white fw-bold px-3 py-2 rounded-pill mb-2">CASOS DE ÉXITO EN VENEZUELA</span>
+                <h2 class="fw-extrabold">Casos Reales de Impacto Directo</h2>
+                <p class="text-secondary">Problemas reales resueltos con arquitectura de IA y automatizaciones resilientes en el mercado local.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Case 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-study-card p-4">
+                        <span class="badge bg-primary bg-opacity-10 text-primary mb-2">Retail / Servicios</span>
+                        <h3 class="h6 fw-bold">Automatización de Ventas y Conciliación de Pagos</h3>
+                        <hr class="my-2">
+                        <p class="extra-small text-danger mb-2"><strong>Problema:</strong> Se perdían 15 horas a la semana verificando capturas de Pago Móvil manualmente.</p>
+                        <p class="extra-small text-secondary mb-3"><strong>Solución SARCOS:</strong> Agente de n8n que lee el comprobante por visión artificial, valida con la banca e ingresa la venta al sistema contable notificando por WhatsApp.</p>
+                        <div class="p-2 bg-success bg-opacity-10 text-success rounded text-center fw-bold small">
+                            <i class="fa-solid fa-circle-check me-1"></i> 90% reducción de tiempo y 0% errores
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="case-study-card p-4">
+                        <span class="badge bg-info bg-opacity-10 text-info mb-2">Logística / Distribución</span>
+                        <h3 class="h6 fw-bold">Procesamiento Masivo de Facturas y Documentos</h3>
+                        <hr class="my-2">
+                        <p class="extra-small text-danger mb-2"><strong>Problema:</strong> Extracción manual lenta de datos desde cientos de PDF adjuntos en correos.</p>
+                        <p class="extra-small text-secondary mb-3"><strong>Solución SARCOS:</strong> Flujo automatizado en n8n con modelos OCR de IA que extraen información estructurada e insertan las órdenes en la BD interna.</p>
+                        <div class="p-2 bg-info bg-opacity-10 text-info rounded text-center fw-bold small">
+                            <i class="fa-solid fa-clock me-1"></i> Facturas procesadas en segundos
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="case-study-card p-4">
+                        <span class="badge bg-warning bg-opacity-10 text-warning mb-2">Financiero / Salud</span>
+                        <h3 class="h6 fw-bold">Agente Privado de Consulta de Documentos Internos</h3>
+                        <hr class="my-2">
+                        <p class="extra-small text-danger mb-2"><strong>Problema:</strong> Normativas prohibían subir contratos y datos de clientes a la nube OpenAI.</p>
+                        <p class="extra-small text-secondary mb-3"><strong>Solución SARCOS:</strong> Despliegue de servidor local con Ollama (DeepSeek/Llama 3) y RAG conectado a n8n para consultas confidenciales en milisegundos.</p>
+                        <div class="p-2 bg-primary bg-opacity-10 text-primary rounded text-center fw-bold small">
+                            <i class="fa-solid fa-lock me-1"></i> 100% privacidad de datos garantizada
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EL FACTOR HUMANO: ABOUT US -->
+    <section id="nosotros" class="py-5 bg-white">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80" alt="Equipo SARCOS IA MÁS HUMANA" class="img-realistic shadow">
+                </div>
+                <div class="col-lg-7">
+                    <span class="badge bg-pastel-accent text-pastel-primary fw-bold px-3 py-2 rounded-pill mb-2">SOBRE SARCOS IA MÁS HUMANA</span>
+                    <h2 class="fw-extrabold mb-3">"Detrás de cada algoritmo, hay una decisión humana que debe mejorar la vida de las personas."</h2>
+                    <p class="text-secondary">
+                        La Inteligencia Artificial no viene a reemplazar el criterio humano, sino a liberarlo de lo repetitivo para potenciar lo creativo y estratégico.
+                    </p>
+                    <p class="text-secondary">
+                        En <strong>SARCOS IA MÁS HUMANA</strong>, combinamos la ingeniería de vanguardia con un entendimiento profundo del entorno operativo real. No enseñamos teoría abstracta; implementamos soluciones que funcionan en el mundo real y, muy especialmente, en el contexto de Venezuela.
+                    </p>
+                    <div class="d-flex gap-3 mt-4">
+                        <div class="border-start border-3 border-primary ps-3">
+                            <strong class="d-block h5 text-dark mb-0">Caracas, Venezuela</strong>
+                            <span class="small text-muted">Sede Principal & Laboratorio Tecnológico</span>
+                        </div>
+                        <div class="border-start border-3 border-info ps-3">
+                            <strong class="d-block h5 text-dark mb-0">Remoto Latam</strong>
+                            <span class="small text-muted">Consultoría e Instrucción Internacional</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MATRIZ DE TRANSPARENCIA DE PRECIOS -->
+    <section id="precios" class="py-5 bg-pastel-subtle">
+        <div class="container">
+            <div class="text-center max-w-2xl mx-auto mb-5">
+                <span class="badge bg-primary text-white fw-bold px-3 py-2 rounded-pill mb-2">INVERSIÓN TRANSPARENTE</span>
+                <h2 class="fw-extrabold">Planes para Formación y Servicios B2B</h2>
+                <p class="text-secondary">Aceptamos múltiples métodos de pago adaptados al mercado venezolano e internacional.</p>
+            </div>
+
+            <!-- B2C Pricing Cards -->
+            <h3 class="h5 fw-bold text-center mb-4 text-pastel-primary"><i class="fa-solid fa-graduation-cap me-2"></i>Programas de Formación (B2C)</h3>
+            <div class="row g-4 mb-5">
+                <!-- Pase Fundamentos -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card">
+                        <h4 class="h5 fw-bold">Pase Fundamentos</h4>
+                        <p class="text-muted extra-small">Iniciación en IA Generativa</p>
+                        <div class="my-3">
+                            <span class="fs-2 fw-extrabold text-dark price-val" data-usd="49">49</span>
+                            <span class="text-muted small currency-symbol">USD</span>
+                        </div>
+                        <ul class="list-unstyled extra-small text-secondary mb-4">
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>Acceso a Cursos Nivel 1</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>Pack de Plantillas de Prompts</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>Comunidad Privada de Aprendizaje</li>
+                        </ul>
+                        <button class="btn btn-outline-primary btn-sm w-100 rounded-pill" onclick="openPaymentModal('Pase Fundamentos', 49)">Inscribirme Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Bootcamp n8n & IA -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="pricing-card popular">
+                        <span class="badge-popular">Más Popular</span>
+                        <h4 class="h5 fw-bold">Bootcamp n8n & IA</h4>
+                        <p class="text-muted extra-small">Especialización en Automatización</p>
+                        <div class="my-3">
+                            <span class="fs-2 fw-extrabold text-dark price-val" data-usd="149">149</span>
+                            <span class="text-muted small currency-symbol">USD</span>
+                        </div>
+                        <ul class="list-unstyled extra-small text-secondary mb-4">
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>Acceso completo Nivel 1 + Nivel 2</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>10 Plantillas n8n Plug & Play</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>Sesiones en Vivo + Revisión de Proyectos</li>
+                        </ul>
+                        <button class="btn btn-primary btn-sm w-100 rounded-pill" onclick="openPaymentModal('Bootcamp n8n & IA', 149)">Inscribirme Ahora</button>
+                    </div>
+                </div>
+
+                <!-- Pro Master -->
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <div class="pricing-card">
+                        <h4 class="h5 fw-bold">Pro Master (Full Stack)</h4>
+                        <p class="text-muted extra-small">Maestría en Agentes y RAG</p>
+                        <div class="my-3">
+                            <span class="fs-2 fw-extrabold text-dark price-val" data-usd="299">299</span>
+                            <span class="text-muted small currency-symbol">USD</span>
+                        </div>
+                        <ul class="list-unstyled extra-small text-secondary mb-4">
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>Acceso completo Niveles 1, 2 y 3</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>Mentoría 1:1 Personalizada</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-success me-2"></i>Certificación Oficial SARCOS</li>
+                        </ul>
+                        <button class="btn btn-outline-dark btn-sm w-100 rounded-pill" onclick="openPaymentModal('Pro Master (Full Stack)', 299)">Inscribirme Ahora</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accepted Payment Methods Banner -->
+            <div class="p-3 bg-white rounded-3 border text-center mb-5">
+                <span class="extra-small fw-bold text-uppercase text-muted d-block mb-2">Métodos de Pago Aceptados en Venezuela e Internacional:</span>
+                <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
+                    <span class="badge bg-light text-dark border p-2"><i class="fa-solid fa-mobile-screen text-primary me-1"></i> Pago Móvil (Tasa Oficial BCV)</span>
+                    <span class="badge bg-light text-dark border p-2"><i class="fa-solid fa-money-bill-transfer text-success me-1"></i> Zelle</span>
+                    <span class="badge bg-light text-dark border p-2"><i class="fa-solid fa-coins text-warning me-1"></i> Binance Pay (USDT)</span>
+                    <span class="badge bg-light text-dark border p-2"><i class="fa-solid fa-credit-card text-danger me-1"></i> Tarjeta Internacional</span>
+                </div>
+            </div>
+
+            <!-- B2B Consultoria Pricing Box -->
+            <div class="bg-dark text-white p-4 p-md-5 rounded-4">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <span class="badge bg-info text-dark fw-bold mb-2">PARA EMPRESAS (B2B)</span>
+                        <h3 class="fw-bold">Consultoría Estratégica & Proyectos Llave en Mano</h3>
+                        <p class="text-white-50 mb-0 small">
+                            <strong>Diagnóstico Inicial:</strong> Gratuito (15 Minutos). <br>
+                            <strong>Proyectos Llave en Mano:</strong> Presupuesto a medida según requerimientos. <br>
+                            <strong>Póliza SLA Mantenimiento:</strong> Mantenimiento, monitoreo n8n y actualización periódica de modelos de IA.
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                        <button class="btn btn-light btn-lg rounded-pill fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#diagnosticModal">
+                            Solicitar Propuesta B2B
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES (FAQ) -->
+    <section id="faq" class="py-5 bg-white">
+        <div class="container max-w-2xl">
+            <div class="text-center mb-5">
+                <span class="badge bg-pastel-accent text-pastel-primary fw-bold px-3 py-2 rounded-pill mb-2">RESOLVEMOS TUS DUDAS</span>
+                <h2 class="fw-extrabold">Preguntas Frecuentes</h2>
+            </div>
+
+            <div class="accordion shadow-sm rounded-3" id="faqAccordion">
+                <!-- FAQ 1 -->
+                <div class="accordion-item border-pastel">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            ¿Necesito saber programar para aprender o implementar n8n?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-secondary small">
+                            No. n8n es una herramienta Low-Code/No-Code. Te enseñamos a usar la interfaz visual y la lógica de nodos. Para casos muy específicos te entregaremos plantillas listas para usar.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="accordion-item border-pastel">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            ¿Qué pasa con mis automatizaciones si se cae la luz o el internet en Caracas?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-secondary small">
+                            Configuramos y enseñamos a desplegar servidores con arquitecturas resilientes (VPS externos o servidores locales con UPS) y sistemas de retención de webhooks (execution retries), garantizando que no se pierda ninguna transacción o mensaje.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="accordion-item border-pastel">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            ¿Mis datos empresariales están seguros al usar Inteligencia Artificial?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-secondary small">
+                            Sí. Para empresas con requerimientos de confidencialidad, diseñamos arquitecturas de IA Privada con modelos Open Source ejecutados localmente (On-Premise). Tus datos jamás salen de tu infraestructura.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="accordion-item border-pastel">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            ¿Puedo pagar en Bolívares o Criptomonedas?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-secondary small">
+                            Sí. Contamos con pago directo mediante Pago Móvil (a la tasa oficial del BCV), Zelle y Binance Pay (USDT).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="accordion-item border-pastel">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            ¿Ofrecen facturación legal para empresas en Venezuela?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-secondary small">
+                            Sí, todos nuestros servicios de consultoría e instrucción in-company ofrecen factura fiscal y documentación adaptada a los requerimientos corporativos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & CONTACT FORM -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <!-- Lead Magnet Callout -->
+            <div class="row g-4 pb-5 border-bottom border-secondary mb-5">
+                <div class="col-md-6">
+                    <div class="p-4 rounded-3 bg-secondary bg-opacity-25 border border-secondary">
+                        <span class="badge bg-success mb-2">RECURSO B2C GRATUITO</span>
+                        <h4 class="h6 fw-bold text-white">Pack de 3 Workflows n8n para WhatsApp</h4>
+                        <p class="extra-small text-white-50">Descarga gratis las plantillas para automatizar tu gestión de clientes.</p>
+                        <button class="btn btn-sm btn-outline-light rounded-pill" onclick="downloadLeadMagnet('B2C')">Descargar Gratis <i class="fa-solid fa-download me-1"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-4 rounded-3 bg-secondary bg-opacity-25 border border-secondary">
+                        <span class="badge bg-info text-dark mb-2">RECURSO B2B GRATUITO</span>
+                        <h4 class="h6 fw-bold text-white">Checklist de Madurez e Identificación de IA</h4>
+                        <p class="extra-small text-white-50">Evaluación interactiva para empresas en Venezuela.</p>
+                        <button class="btn btn-sm btn-outline-info rounded-pill" onclick="downloadLeadMagnet('B2B')">Obtener Checklist <i class="fa-solid fa-file-invoice me-1"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <h3 class="h4 fw-bold mb-3">¿Listo para automatizar lo repetitivo y enfocar tu energía en lo que realmente importa?</h3>
+                    <p class="text-white-50 small mb-4">
+                        Ponte en contacto con nuestro equipo estratégico en Caracas o agenda directamente en nuestro calendario online.
+                    </p>
+                    <div class="mb-3 extra-small text-white-50">
+                        <p class="mb-1"><i class="fa-solid fa-location-dot text-info me-2"></i> Caracas, Venezuela</p>
+                        <p class="mb-1"><i class="fa-brands fa-whatsapp text-success me-2"></i> +58 412-6758140</p>
+                        <p class="mb-1"><i class="fa-brands fa-instagram text-danger me-2"></i> @sarcosiahumana</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <!-- Integrated Quick Contact Form -->
+                    <div class="bg-white text-dark p-4 rounded-3">
+                        <h4 class="h6 fw-bold mb-3">Formulario de Contacto Rápido</h4>
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="row g-2">
+                                <div class="col-md-6 mb-2">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Nombre Completo" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <input type="email" class="form-control form-control-sm" placeholder="Correo Electrónico" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <input type="tel" class="form-control form-control-sm" placeholder="Teléfono / WhatsApp (+58...)" required>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <select class="form-select form-select-sm" required>
+                                        <option value="" selected disabled>Me interesa...</option>
+                                        <option value="b2c">Formación Personal (Cursos)</option>
+                                        <option value="incompany">Capacitación Empresarial</option>
+                                        <option value="b2b">Consultoría a Medida (B2B)</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <textarea class="form-control form-control-sm" rows="3" placeholder="Detalles de tu consulta o empresa..."></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-custom-solid btn-sm w-100">Enviar Solicitud <i class="fa-solid fa-paper-plane ms-1"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-4 mt-5 border-top border-secondary text-center text-white-50 extra-small">
+                <p>© 2026 SARCOS IA MÁS HUMANA. Todos los derechos reservados. Caracas, Venezuela.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WIDGETS -->
+    <div class="floating-widget-container">
+        <!-- Instagram Button -->
+        <a href="https://instagram.com/sarcosiahumana" target="_blank" class="floating-btn btn-instagram" title="Síguenos en Instagram @sarcosiahumana">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <!-- WhatsApp Button -->
+        <button class="floating-btn btn-whatsapp border-0" onclick="toggleWhatsAppBox()" title="Chatea con nosotros por WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </button>
+    </div>
+
+    <!-- WhatsApp Chat Floating Box -->
+    <div id="waChatBox" class="wa-chat-box">
+        <div class="wa-chat-header">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fa-brands fa-whatsapp fs-4"></i>
+                <div>
+                    <h6 class="mb-0 fw-bold small">SARCOS IA MÁS HUMANA</h6>
+                    <span class="extra-small opacity-75">Responde en minutos</span>
+                </div>
+            </div>
+            <button class="btn-close btn-close-white btn-sm" onclick="toggleWhatsAppBox()"></button>
+        </div>
+        <div class="wa-chat-body">
+            <div class="wa-msg-bubble">
+                ¡Hola! 👋 Bienvenido a <strong>SARCOS IA MÁS HUMANA</strong>. ¿En qué podemos ayudarte hoy en Caracas o Latam?
+            </div>
+            <div class="d-flex flex-column gap-1">
+                <a href="https://wa.me/584126758140?text=Hola!%20Deseo%20informaci%C3%B3n%20sobre%20los%20Cursos%20de%20IA%20y%20n8n" target="_blank" class="btn btn-sm btn-light text-start extra-small border">
+                    <i class="fa-solid fa-graduation-cap me-1 text-primary"></i> Quiero información sobre Cursos
+                </a>
+                <a href="https://wa.me/584126758140?text=Hola!%20Me%20interesa%20una%20Consultor%C3%ADa%20B2B%20para%20mi%20empresa" target="_blank" class="btn btn-sm btn-light text-start extra-small border">
+                    <i class="fa-solid fa-building me-1 text-success"></i> Consultoría B2B Empresarial
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- B2B DIAGNOSTIC MODAL -->
+    <div class="modal fade" id="diagnosticModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title h6 fw-bold"><i class="fa-solid fa-calendar-check text-info me-2"></i>Agendar Diagnóstico de IA (15 Min)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="small text-muted mb-3">Completa el formulario de cualificación rápida para agendar tu llamada estratégica con el equipo técnico de SARCOS.</p>
+                    <form onsubmit="handleDiagnosticSubmit(event)">
+                        <div class="mb-2">
+                            <label class="form-label extra-small fw-bold mb-1">Nombre y Apellido</label>
+                            <input type="text" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label extra-small fw-bold mb-1">Nombre de la Empresa</label>
+                            <input type="text" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label extra-small fw-bold mb-1">Número de Empleados</label>
+                            <select class="form-select form-select-sm" required>
+                                <option value="1-10">1 - 10 empleados</option>
+                                <option value="11-50">11 - 50 empleados</option>
+                                <option value="50+">Más de 50 empleados</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label extra-small fw-bold mb-1">Procesos a Automatizar</label>
+                            <textarea class="form-control form-control-sm" rows="2" placeholder="Ej: Conciliación de Pagos, Facturas PDF, Atencion WhatsApp..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-custom-solid w-100 btn-sm">Confirmar Agendamiento <i class="fa-solid fa-check ms-1"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Currency Conversion Rates (Simulation: 1 USD = ~68.50 VES BCV Rate)
+        const exchangeRates = {
+            'USD': { rate: 1, symbol: 'USD ($)', suffix: 'USD' },
+            'VES': { rate: 68.50, symbol: 'VES (Bs. BCV)', suffix: 'Bs.' },
+            'USDT': { rate: 1, symbol: 'USDT (Binance)', suffix: 'USDT' }
+        };
+
+        let currentCurrency = 'USD';
+
+        document.querySelectorAll('.currency-select').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentCurrency = this.getAttribute('data-currency');
+                document.getElementById('selectedCurrencyLabel').innerText = exchangeRates[currentCurrency].symbol;
+                updatePrices();
+            });
+        });
+
+        function updatePrices() {
+            const priceElements = document.querySelectorAll('.price-val');
+            const currencySymbols = document.querySelectorAll('.currency-symbol');
+
+            priceElements.forEach(el => {
+                const usdVal = parseFloat(el.getAttribute('data-usd'));
+                if (currentCurrency === 'VES') {
+                    const vesVal = Math.round(usdVal * exchangeRates['VES'].rate);
+                    el.innerText = vesVal.toLocaleString('es-VE');
+                } else {
+                    el.innerText = usdVal;
+                }
+            });
+
+            currencySymbols.forEach(el => {
+                el.innerText = exchangeRates[currentCurrency].suffix;
+            });
+        }
+
+        // Cycle active nodes in hero section animation
+        let currentNodeIndex = 0;
+        const nodes = ['node1', 'node2', 'node3', 'node4'];
+
+        setInterval(() => {
+            nodes.forEach(id => {
+                document.getElementById(id).classList.remove('active');
+            });
+            currentNodeIndex = (currentNodeIndex + 1) % nodes.length;
+            document.getElementById(nodes[currentNodeIndex]).classList.add('active');
+        }, 2200);
+
+        function toggleWhatsAppBox() {
+            const box = document.getElementById('waChatBox');
+            box.style.display = box.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showCustomToast("¡Solicitud enviada con éxito! Nos pondremos en contacto vía WhatsApp/Email.");
+            e.target.reset();
+        }
+
+        function handleDiagnosticSubmit(e) {
+            e.preventDefault();
+            const modalEl = document.getElementById('diagnosticModal');
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            modal.hide();
+            showCustomToast("¡Diagnóstico agendado! Te redirigiremos a la confirmación.");
+            window.open("https://wa.me/584126758140?text=Hola,%20acabo%20de%20agendar%20mi%20diagn%C3%B3stico%20de%2015%20minutos%20para%20mi%20empresa.", "_blank");
+        }
+
+        function openPaymentModal(planName, priceUSD) {
+            window.open(`https://wa.me/584126758140?text=Hola!%20Quiero%20inscribirme%20en%20el%20plan%20*${encodeURIComponent(planName)}*%20(${priceUSD}%20USD)`, "_blank");
+        }
+
+        function downloadLeadMagnet(type) {
+            showCustomToast(`Descargando recurso ${type}... Redirigiendo.`);
+            setTimeout(() => {
+                window.open("https://wa.me/584126758140?text=Hola!%20Me%20gustar%C3%ADa%20recibir%20el%20recurso%20gratuito%20" + type, "_blank");
+            }, 800);
+        }
+
+        function showCustomToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification alert alert-info shadow-lg border-primary rounded-3 text-dark fw-bold small p-3';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-primary me-2"></i> ${msg}`;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
